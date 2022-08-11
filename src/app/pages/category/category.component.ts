@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Product } from 'src/app/models/product.model';
@@ -12,6 +12,8 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CategoryComponent implements OnInit {
   categoryId: string | null = null;
+  productId: string | null = null;
+
   limit = 10;
   offset = 0;
   products: Product[] = [];
@@ -33,16 +35,21 @@ export class CategoryComponent implements OnInit {
         })
       ).subscribe((data) => {
         this.products = data;
+
+        this.route.queryParamMap.subscribe((params) => {
+          this.productId = params.get('product');
+        });
       });
   }
-  onLoadMore(){
-    if(this.categoryId){
+  
+  onLoadMore() {
+    if (this.categoryId) {
       this.productsService
-      .getByCategory(this.categoryId, this.limit, this.offset)
-      .subscribe((data) => {
-        this.products = this.products.concat(data);
-        this.offset += this.limit;
-      });
+        .getByCategory(this.categoryId, this.limit, this.offset)
+        .subscribe((data) => {
+          this.products = this.products.concat(data);
+          this.offset += this.limit;
+        });
     }
   }
 
