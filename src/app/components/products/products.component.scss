@@ -5,6 +5,7 @@
 }
 
 .product-detail {
+  display: flex;
   position: fixed;
   top: 0;
   left: 60%;
@@ -19,6 +20,14 @@
   &.active {
     transform: translateX(0);
   }
+}
+swiper{
+  width: 90%;
+  height: 70vh;
+}
+.product-detail img {
+  height: 100vh;  
+  object-fit: cover; 
 }
 
 // tablets
