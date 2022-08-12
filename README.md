@@ -28,3 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Need install
 
+Instalar quicklink
+    
+    npm i ngx-quicklink --save
